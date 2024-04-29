@@ -32,76 +32,31 @@ This is a Django project that provides API endpoints for managing vendors and pu
 ## API Endpoints
    ### Vendors
   
-  1. Create Vendor
-  2. URL: `/api/vendors/`
-  3. Method: POST
-  4. Request Body:
-  ``` 
-  {
-      "name": "Vendor Name",
-      "contact_details": "Contact details",
-      "address": "Vendor Address",
-      "vendor_code": "1234"
-  }
-  ```
- 5. Response:
-    1. Status Code: 201 (Created)
-    2. Body:
-    ```
-    {
-    "id": 1,
-    "name": "Vendor Name",
-    "contact_details": "Contact details",
-    "address": "Vendor Address",
-    "vendor_code": "1234",
-    "on_time_delivery_rate": 0,
-    "quality_rating_avg": null,
-    "average_response_time": 0,
-    "fulfillment_rate": 0
-    }
-    ```
-6. Retrieve, Update, Delete Vendor
-   1. URL: /api/vendors/<vendor_id>/
-   2. Methods: GET, PUT, PATCH, DELETE
+ #### List / Create Vendors
+   1. Endpoint: `/api/vendors/`
+   2. Methods: GET, POST
+   3. Description: Retrieve a list of all vendors or create a new vendor.
       
-  ### Purchase Orders
-  1. Create Purchase Order
-  2. URL: `/api/purchase_orders/`
-  3. Method: POST
-  4. Request Body:
-  ```
-    {
-    "po_number": "PO123",
-    "vendor": 1,
-    "order_date": "2024-04-30T10:00:00Z",
-    "delivery_date": "2024-05-10T10:00:00Z",
-    "items": ["item1", "item2"],
-    "quantity": 10,
-    "status": "pending",
-    "issue_date": "2024-04-30T10:00:00Z"
-    }
- ```
- 5. Response:
-    1. Status Code: 201 (Created)
-    2. Body:
-  ```
-    {
-    "id": 1,
-    "po_number": "PO123",
-    "vendor": 1,
-    "order_date": "2024-04-30T10:00:00Z",
-    "delivery_date": "2024-05-10T10:00:00Z",
-    "items": ["item1", "item2"],
-    "quantity": 10,
-    "status": "pending",
-    "issue_date": "2024-04-30T10:00:00Z",
-    "acknowledgment_date": null,
-    "quality_rating": null
-    }
-```
-6. Retrieve, Update, Delete Purchase Order
-   1. URL: `/api/purchase_orders/<purchase_order_id>/`
+ #### Retrieve / Update / Delete Vendor
+   1. Endpoint: `/api/vendors/<int:pk>/`
    2. Methods: GET, PUT, PATCH, DELETE
+   3. Description: Retrieve, update, or delete a specific vendor by its primary key.
+
+ #### Vendor Performance
+ 1. Endpoint: `/api/vendors/<int:pk>/performance/`
+ 2. Methods: GET
+ 3. Description: Retrieve the performance metrics of a specific vendor.
+
+  ### Purchase Orders
+   #### List / Create Purchase Orders
+   1. Endpoint: `/api/purchase_orders/`
+   2. Methods: GET, POST
+   3. Description: Retrieve a list of all purchase orders or create a new purchase order.
+
+  #### Retrieve / Update / Delete Purchase Order
+   1. Endpoint: `/api/purchase_orders/<int:pk>/`
+   2. Methods: GET, PUT, PATCH, DELETE
+   3. Description: Retrieve, update, or delete a specific purchase order by its primary key.
 
 
 
