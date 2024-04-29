@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.db.models import Count, Avg, F
 from django.utils import timezone
 
@@ -63,3 +64,4 @@ class HistoricalPerformance(models.Model):
 
     def __str__(self):
         return f"{self.vendor} - {self.date}"
+

@@ -1,12 +1,17 @@
+from rest_framework.authtoken.models import Token
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 from .models import Vendor, PurchaseOrder
+from django.contrib.auth.models import User
 
 class VendorAPITests(TestCase):
     def setUp(self):
         self.client = APIClient()
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token}')
 
     def test_create_vendor(self):
         url = reverse('vendor-list-create')
@@ -24,6 +29,9 @@ class VendorAPITests(TestCase):
 class PurchaseOrderAPITests(TestCase):
     def setUp(self):
         self.client = APIClient()
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token}')
         self.vendor = Vendor.objects.create(name='Test Vendor', contact_details='Contact details', address='Test Address', vendor_code='1234')
 
     def test_create_purchase_order(self):
